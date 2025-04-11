@@ -56,8 +56,8 @@ public struct CybozuUserAPI: Sendable {
         offset: Int? = nil
     ) async throws -> FetchUsersResponse {
         var queryItems = [URLQueryItem]()
-        queryItems.appendQueryItem(name: "ids", value: ids?.arrayString)
-        queryItems.appendQueryItem(name: "codes", value: codes?.arrayString)
+        queryItems.appendQueryItems(name: "ids", values: ids?.compactMap(String.init))
+        queryItems.appendQueryItems(name: "codes", values: codes)
         queryItems.appendQueryItem(name: "size", value: size?.description)
         queryItems.appendQueryItem(name: "offset", value: offset?.description)
         let request = makeRequest(httpMethod: .get, endpoint: .users, queryItems: queryItems)
