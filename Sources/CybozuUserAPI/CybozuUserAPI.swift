@@ -63,9 +63,6 @@ public struct CybozuUserAPI: Sendable {
         let request = makeRequest(httpMethod: .get, endpoint: .users, queryItems: queryItems)
         let (data, response) = try await dataRequestHandler(request)
         try check(response: response)
-        if let str = String(data: data, encoding: .utf8) {
-            print(str)
-        }
         return try JSONDecoder().decode(FetchUsersResponse.self, from: data)
     }
 }
