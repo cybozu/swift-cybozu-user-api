@@ -6,5 +6,5 @@
 //
 
 public struct FetchOrganizationsResponse: Decodable, Sendable, Equatable {
-    public var organizations: [Organization]
+    public var organizations: [CybozuOrganization]
 }

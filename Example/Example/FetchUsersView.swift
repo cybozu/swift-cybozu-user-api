@@ -9,7 +9,7 @@ import CybozuUserAPI
 import SwiftUI
 
 struct FetchUsersView: View {
-    private var users: [User]
+    private var users: [CybozuUser]
 
     init(usersResponse: FetchUsersResponse?) {
         users = usersResponse?.users ?? []

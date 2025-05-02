@@ -9,7 +9,7 @@ import CybozuUserAPI
 import SwiftUI
 
 struct FetchOrganizationsView: View {
-    private var organizations: [Organization]
+    private var organizations: [CybozuOrganization]
 
     init(organizationsResponse: FetchOrganizationsResponse?) {
         organizations = organizationsResponse?.organizations ?? []
@@ -18,10 +18,10 @@ struct FetchOrganizationsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 8) {
-                ForEach(organizations) { user in
+                ForEach(organizations) { organization in
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Code: \(user.code)")
-                        Text("Name: \(user.name)")
+                        Text("Code: \(organization.code)")
+                        Text("Name: \(organization.name)")
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .cornerRadiusBorder()

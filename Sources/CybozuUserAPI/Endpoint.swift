@@ -8,4 +8,5 @@
 enum Endpoint: String {
     case users = "/v1/users.json"
     case organizations = "/v1/organizations.json"
+    case groups = "/v1/groups.json"
 }

@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  CybozuUser.swift
 //  CybozuUserAPI
 //
 //  Created by ky0me22 on 2025/04/10.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User: Sendable, Equatable {
+public struct CybozuUser: Sendable, Equatable {
     public var id: Int
     public var code: String
     public var createdAt: Date
@@ -36,7 +36,7 @@ public struct User: Sendable, Equatable {
     public var customItemValues: [CustomItemValue]
 }
 
-extension User: Decodable {
+extension CybozuUser: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
         case code

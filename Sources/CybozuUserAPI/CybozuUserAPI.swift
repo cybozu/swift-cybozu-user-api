@@ -82,4 +82,21 @@ public struct CybozuUserAPI: Sendable {
         try check(response: response)
         return try JSONDecoder().decode(FetchOrganizationsResponse.self, from: data)
     }
+
+    public func fetchGroups(
+        ids: [Int]? = nil,
+        codes: [String]? = nil,
+        size: Int? = nil,
+        offset: Int? = nil
+    ) async throws -> FetchGroupsResponse {
+        var queryItems = [URLQueryItem]()
+        queryItems.appendQueryItems(name: "ids", values: ids?.compactMap(String.init))
+        queryItems.appendQueryItems(name: "codes", values: codes)
+        queryItems.appendQueryItem(name: "size", value: size?.description)
+        queryItems.appendQueryItem(name: "offset", value: offset?.description)
+        let request = makeRequest(httpMethod: .get, endpoint: .groups, queryItems: queryItems)
+        let (data, response) = try await dataRequestHandler(request)
+        try check(response: response)
+        return try JSONDecoder().decode(FetchGroupsResponse.self, from: data)
+    }
 }

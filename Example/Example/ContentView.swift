@@ -11,8 +11,8 @@ import SwiftUI
 
 enum TabCategory {
     case fetchUsers
-    case fetchGroups
     case fetchOrganizations
+    case fetchGroups
 }
 
 @MainActor @Observable final class ContentViewModel {
@@ -22,7 +22,8 @@ enum TabCategory {
     var isPresented = false
     var tabCategory = TabCategory.fetchUsers
     var usersResponse: FetchUsersResponse?
-    var organizations: FetchOrganizationsResponse?
+    var organizationsResponse: FetchOrganizationsResponse?
+    var groupsResponse: FetchGroupsResponse?
 
     var cybozuUserAPI: CybozuUserAPI {
         .init(
@@ -50,7 +51,8 @@ enum TabCategory {
     func onTask() async {
         do {
             usersResponse = try await cybozuUserAPI.fetchUsers()
-            organizations = try await cybozuUserAPI.fetchOrganizations()
+            organizationsResponse = try await cybozuUserAPI.fetchOrganizations()
+            groupsResponse = try await cybozuUserAPI.fetchGroups()
         } catch {
             print(error.localizedDescription)
         }
@@ -109,11 +111,16 @@ struct ContentView: View {
                             Label("Users", systemImage: "person")
                         }
                         .tag(TabCategory.fetchUsers)
-                    FetchOrganizationsView(organizationsResponse: viewModel.organizations)
+                    FetchOrganizationsView(organizationsResponse: viewModel.organizationsResponse)
                         .tabItem {
                             Label("Organizations", systemImage: "point.3.connected.trianglepath.dotted")
                         }
                         .tag(TabCategory.fetchOrganizations)
+                    FetchGroupsView(groupsResponse: viewModel.groupsResponse)
+                        .tabItem {
+                            Label("Groups", systemImage: "person.3")
+                        }
+                        .tag(TabCategory.fetchGroups)
                 }
                 .task {
                     await viewModel.onTask()

@@ -6,5 +6,5 @@
 //
 
 public struct FetchUsersResponse: Decodable, Sendable, Equatable {
-    public var users: [User]
+    public var users: [CybozuUser]
 }

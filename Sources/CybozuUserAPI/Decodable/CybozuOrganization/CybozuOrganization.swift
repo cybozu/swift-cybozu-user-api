@@ -5,9 +5,7 @@
 //  Created by ky0me22 on 2025/05/02.
 //
 
-import Foundation
-
-public struct Organization: Sendable, Equatable {
+public struct CybozuOrganization: Sendable, Equatable {
     public var id: Int
     public var code: String
     public var name: String
@@ -17,8 +15,8 @@ public struct Organization: Sendable, Equatable {
     public var description: String
 }
 
-extension Organization: Decodable {
-    enum CodingKeys: String, CodingKey {
+extension CybozuOrganization: Decodable {
+    enum CodingKeys: CodingKey {
         case id
         case code
         case name
