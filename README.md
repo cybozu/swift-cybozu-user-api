@@ -13,9 +13,11 @@ Providing cybozu.com User API with Swift interface.
 
 ## Supported API
 
-| API                      | Method | Reference                                                                      |
-| :----------------------- | :----- | :----------------------------------------------------------------------------- |
-| `fetchUsers`             | GET    | [/v1/users.json](https://kintone.dev/en/docs/common/user-api/users/get-users/) |
+| API                  | Method | Reference                                                                                          |
+| :------------------- | :----- | :------------------------------------------------------------------------------------------------- |
+| `fetchUsers`         | GET    | [/v1/users.json](https://kintone.dev/en/docs/common/user-api/users/get-users/)                     |
+| `fetchOrganizations` | GET    | [/v1/organizations.json](https://kintone.dev/en/docs/common/user-api/departments/get-departments/) |
+| `fetchGroups`        | GET    | [/v1/groups.json](https://kintone.dev/en/docs/common/user-api/groups/get-groups/)                  |
 
 ## Privacy Manifest
 
