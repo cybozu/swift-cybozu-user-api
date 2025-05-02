@@ -1,24 +1,24 @@
 //
-//  FetchUsersView.swift
+//  FetchOrganizationsView.swift
 //  Example
 //
-//  Created by ky0me22 on 2025/04/10.
+//  Created by ky0me22 on 2025/05/02.
 //
 
 import CybozuUserAPI
 import SwiftUI
 
-struct FetchUsersView: View {
-    private var users: [User]
+struct FetchOrganizationsView: View {
+    private var organizations: [Organization]
 
-    init(usersResponse: FetchUsersResponse?) {
-        users = usersResponse?.users ?? []
+    init(organizationsResponse: FetchOrganizationsResponse?) {
+        organizations = organizationsResponse?.organizations ?? []
     }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 8) {
-                ForEach(users) { user in
+                ForEach(organizations) { user in
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Code: \(user.code)")
                         Text("Name: \(user.name)")
@@ -29,6 +29,6 @@ struct FetchUsersView: View {
             }
             .padding()
         }
-        .navigationTitle("Cybozu User API (/v1/users.json)")
+        .navigationTitle("Cybozu User API (/v1/organizations.json)")
     }
 }

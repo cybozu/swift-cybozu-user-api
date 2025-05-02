@@ -9,12 +9,20 @@ import CybozuUserAPI
 import Observation
 import SwiftUI
 
+enum TabCategory {
+    case fetchUsers
+    case fetchGroups
+    case fetchOrganizations
+}
+
 @MainActor @Observable final class ContentViewModel {
     var domain: String
     var loginName: String
     var password = ""
     var isPresented = false
+    var tabCategory = TabCategory.fetchUsers
     var usersResponse: FetchUsersResponse?
+    var organizations: FetchOrganizationsResponse?
 
     var cybozuUserAPI: CybozuUserAPI {
         .init(
@@ -42,6 +50,7 @@ import SwiftUI
     func onTask() async {
         do {
             usersResponse = try await cybozuUserAPI.fetchUsers()
+            organizations = try await cybozuUserAPI.fetchOrganizations()
         } catch {
             print(error.localizedDescription)
         }
@@ -94,10 +103,21 @@ struct ContentView: View {
             .navigationTitle("Entrance")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $viewModel.isPresented) {
-                FetchUsersView(usersResponse: viewModel.usersResponse)
-                    .task {
-                        await viewModel.onTask()
-                    }
+                TabView(selection: $viewModel.tabCategory) {
+                    FetchUsersView(usersResponse: viewModel.usersResponse)
+                        .tabItem {
+                            Label("Users", systemImage: "person")
+                        }
+                        .tag(TabCategory.fetchUsers)
+                    FetchOrganizationsView(organizationsResponse: viewModel.organizations)
+                        .tabItem {
+                            Label("Organizations", systemImage: "point.3.connected.trianglepath.dotted")
+                        }
+                        .tag(TabCategory.fetchOrganizations)
+                }
+                .task {
+                    await viewModel.onTask()
+                }
             }
         }
     }

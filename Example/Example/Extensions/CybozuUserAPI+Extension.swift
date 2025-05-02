@@ -7,4 +7,6 @@
 
 import CybozuUserAPI
 
-extension CybozuUser: @retroactive Identifiable {}
+extension User: @retroactive Identifiable {}
+
+extension Organization: @retroactive Identifiable {}
