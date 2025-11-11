@@ -7,8 +7,8 @@ Providing cybozu.com User API with Swift interface.
 
 ## Requirements
 
-- Development with Xcode 16.2+
-- Written in Swift 6.0
+- Development with Xcode 26.0+
+- Written in Swift 6.2
 - Compatible with iOS 17+, macOS 14+
 
 ## Supported API
